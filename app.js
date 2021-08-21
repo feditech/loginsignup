@@ -1,64 +1,50 @@
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-     window.location = "profile.html" }
-    })
+// firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//      window.location = "profile.html" }
+//     })
 
+// let uploadFiles = (file) => {
+//         return new Promise((resolve, reject) => {
+//             let storageRef = firebase.storage().ref(`profilepics/${file.name}`);
+//             // let progress1 = document.getElementById("progress"); // let bar = document.getElementById("bar");  // progress1.style.display = "block"
+//             let uploading = storageRef.put(file)
+//             uploading.on('state_changed',
+//                 (snapshot) => {
+//                     // var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;         // bar.style.width = Math.round(progress.toFixed()) + "%";           // bar.innerHTML = Math.round(progress.toFixed()) + "%";
+//                     switch (snapshot.state) {
+//                         case firebase.storage.TaskState.PAUSED:
+//                             console.log('Upload is paused');
+//                             break;
+//                         case firebase.storage.TaskState.RUNNING:
+//                             console.log('Upload is running');
+//                             break;
+//                     }
+//                 },
+//                 (error) => {
+//                     reject(error)
+//                 },
+//                 () => {
+//                     uploading.snapshot.ref.getDownloadURL().then((downloadURL) => {
+//                         resolve(downloadURL)
+//                     });
+//                 }
+//             );
+//         })
+//     }
 
-
-
-let login = () => {
-    let email = document.getElementById("email")
-    let password = document.getElementById("password")
-    let successdiv = document.getElementById("successdiv")
-    let errordiv = document.getElementById("errordiv")
-    let loader = document.getElementById("loader")
-    let loadertext = document.getElementById("loadertext")
-
-    loader.style.display = "block";
-    loadertext.style.display = 'none';
-    errordiv.style.display="none"   
-
-    firebase.auth().signInWithEmailAndPassword(email.value, password.value)
-        .then((res) => {
-            // Signed in
-
-            var user = res.user;
-            successdiv.innerText = "Sign in Successful"
-            loader.style.display = "none";
-            loadertext.style.display = 'block';
-            successdiv.style.display= "block"
-
-
-            // console.log(firebase.auth().currentUser)              
+//     let profilePicUrl = await uploadFiles(profilepic.files[0])
+//     console.log(profilePicUrl)
     
-            setTimeout(()=>{
-                window.location = "profile.html"
-            },1000)
-
-        })
-        .catch((error) => {
-           
-            var errorMessage = error.message;
-            loader.style.display = "none";
-            loadertext.style.display = 'block';
-            successdiv.style.display= "none"
-            errordiv.innerText= errorMessage;
-            errordiv.style.display="block"
-        });
-
-
-
-}
-
 
 let register = () => {
     let username = document.getElementById("username")
     let email = document.getElementById("email")
     let password = document.getElementById("password")
+    
     let successdiv = document.getElementById("successdiv")
     let errordiv = document.getElementById("errordiv")
     let loader = document.getElementById("loader")
-    let loadertext = document.getElementById("loadertext")
+
 
     loader.style.display = "block";
     loadertext.style.display = 'none';
@@ -71,7 +57,8 @@ let register = () => {
                 {
                     Username: `${username.value}`,
                     Email: `${email.value}`,
-                    Password: `${password.value}`
+                    Password: `${password.value}`,
+
                 }
             ).then((res) => {
                 successdiv.innerText = "Sign up successful"
@@ -106,6 +93,44 @@ let register = () => {
 }
 
 
+
+let login = () => {
+    let email = document.getElementById("email")
+    let password = document.getElementById("password")
+    let successdiv = document.getElementById("successdiv")
+    let errordiv = document.getElementById("errordiv")
+    let loader = document.getElementById("loader")
+    let loadertext = document.getElementById("loadertext")
+
+    loader.style.display = "block";
+    loadertext.style.display = 'none';
+    errordiv.style.display="none"   
+
+    firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+        .then((res) => {
+            // Signed in
+
+            var user = res.user;
+            successdiv.innerText = "Sign in Successful"
+            loader.style.display = "none";
+            loadertext.style.display = 'block';
+            successdiv.style.display= "block"
+    
+            setTimeout(()=>{
+                window.location = "profile.html"
+            },1000)
+
+        })
+        .catch((error) => {           
+            var errorMessage = error.message;
+            loader.style.display = "none";
+            loadertext.style.display = 'block';
+            successdiv.style.display= "none"
+            errordiv.innerText= errorMessage;
+            errordiv.style.display="block"
+        });
+
+}
 
 
 // let profile = ()=>{

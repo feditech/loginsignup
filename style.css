@@ -2,12 +2,17 @@
     margin-top: 20px;
 }
 
-.profile-div > img  {
+.profile-div{
+position: relative;
+}
+.profilepic {
     border: 4px solid grey;
     height: 200px;
     width: 200px;
     border-radius: 100px;
+   
 }
+
 
 .text-center {
     text-align: center;
@@ -16,4 +21,34 @@
 
 .profileloader{
     margin: 0 auto;
+}
+
+
+/* Products page styling */
+
+
+
+ 
+.prow{
+    width: 90%;
+    margin: 0 auto;
+   
+}
+
+.card{
+    margin: 10px;
+}
+.card img{
+    width: 90%;  
+    height: 200px;
+    margin: 0 auto;
+}
+
+.card-body{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#searchInput{
+    outline: none;
 }
